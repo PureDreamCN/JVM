@@ -11,6 +11,7 @@ import java.io.InputStream;
 
 /**
  * what:    自定义类加载器
+ * 在自定类加载器的时候必须重写 findClass()方法
  *
  * @author 郭飞 created on 2018/1/19
  */
@@ -70,6 +71,7 @@ public class MyClassLoader extends ClassLoader {
         @Override
     public  Class<?> findClass(String name) throws ClassNotFoundException {
             byte[] data = loadClassData(name);
+            //将二进制数据转换为Class的实例
             return this.defineClass(name, data, 0, data.length);
     }
 
